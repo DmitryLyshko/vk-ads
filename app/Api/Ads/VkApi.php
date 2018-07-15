@@ -118,7 +118,6 @@ class VkApi
                 'query' => [
                     'access_token' => $this->access_token,
                     'account_id' => $account_id,
-                    'include_deleted' => 1,
                     'campaign_ids' => json_encode($campaign_ids),
                     'v' => env('VK_VERSION')
                 ]
