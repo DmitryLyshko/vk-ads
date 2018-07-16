@@ -55,7 +55,7 @@
                         </tr>
 
                         <tr>
-                            <td>Идентификатор кампании</td>
+                            <td>ID компании</td>
                             <td>{{$item->campaign_id}}</td>
                         </tr>
 
