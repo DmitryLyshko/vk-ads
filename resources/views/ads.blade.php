@@ -100,9 +100,9 @@
                             <form method="GET">
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Описание: </label>
-                                    <textarea maxlength="100" class="form-control" id="exampleFormControlTextarea1" name="description[{{$item->id}}]" rows="3"></textarea>
+                                    <textarea maxlength="100" class="form-control" id="exampleFormControlTextarea1" name="description[{{$item->id}}]" rows="3">@if (isset($ads_note[$item->id])){{$ads_note[$item->id]}}@endif </textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Обновить</button>
+                                <button type="submit" class="btn btn-primary">Обновить примечание</button>
                             </form></td>
                         </tr>
 

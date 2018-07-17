@@ -64,10 +64,14 @@ class CampaignsController extends Controller
         $ads = $vk_api->getAds($account_id, [$campaign_id]);
         $ads_ids = [];
         foreach ($ads->response as $ad) {
-            $ads_ids = $ad->id;
+            $ads_ids[] = $ad->id;
         }
 
-        $ads_note = DB::table('ads')->whereNotIn('ads_id', $ads_ids)->get();
+        $ads_note = [];
+        $ads_collection = DB::table('ads')->whereIn('ads_id', $ads_ids)->get();
+        foreach ($ads_collection as $item) {
+            $ads_note[$item->ads_id] = $item->note;
+        }
 
         return view('ads', [
             'ads' => $ads->response,
