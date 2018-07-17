@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ads;
 use App\Api\Ads\VkApi;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class HomeController
@@ -66,7 +67,7 @@ class CampaignsController extends Controller
             $ads_ids = $ad->id;
         }
 
-        $ads_note = Ads::whereIn('ads_id', $ads_ids)->get();
+        $ads_note = DB::table('ads')->whereNotIn('ads_id', $ads_ids)->get();
 
         return view('ads', [
             'ads' => $ads->response,
