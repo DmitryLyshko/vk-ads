@@ -95,7 +95,6 @@
                             <td>{{$item->cost_type}}</td>
                         </tr>
 
-                        @if ($item->ad_format === 1)
                         <tr>
                             <td>
                             <form method="GET">
@@ -106,7 +105,7 @@
                                 <button type="submit" class="btn btn-primary">Обновить</button>
                             </form></td>
                         </tr>
-                        @endif
+
                     </tbody>
                     @endforeach
                 </table>
