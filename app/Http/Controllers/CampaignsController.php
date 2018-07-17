@@ -100,7 +100,7 @@ class CampaignsController extends Controller
     {
         $vk_api = new VkApi();
         $vk_api->updateAds($account_id, $description);
-        $ad = Ads::where('ads_id', '=', key($description))->get();
+        $ad = Ads::where('ads_id', '=', key($description))->first();
         if (!$ad) {
             $ad = new Ads();
             $ad->ads_id = key($description);
