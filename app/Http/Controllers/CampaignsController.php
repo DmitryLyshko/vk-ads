@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ads;
 use App\Api\Ads\VkApi;
 
 /**
@@ -99,6 +100,17 @@ class CampaignsController extends Controller
     {
         $vk_api = new VkApi();
         $vk_api->updateAds($account_id, $description);
+        $ad = Ads::where('ads_id', '=', key($description))->get();
+        if (!$ad) {
+            $ad = new Ads();
+            $ad->ads_id = key($description);
+            $ad->note = mb_substr($description[key($description)], 0, 100);
+            $ad->save();
+        } else {
+            $ad->note = mb_substr($description[key($description)], 0, 100);
+            $ad->save();
+        }
+
         return redirect(url()->current());
     }
 }

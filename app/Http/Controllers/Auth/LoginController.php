@@ -56,12 +56,16 @@ class LoginController extends Controller
         $api = new VkApi();
         $token = $api->auth();
 
+        if (!isset($token['user_id'])) {
+            return redirect('/');
+        }
+
         $user = DB::table('users')->where('vk_user_id', $token['user_id'])->first();
         if ($user === null) {
             $user = new User();
-            $user->login = $token['email'];
+            $user->login = $token['user_id'];
             $user->password = Hash::make($token['access_token'] . time());
-            $user->email = $token['email'];
+            $user->email = isset($token['email']) ? $token['email'] : '';
             $user->vk_access_token = $token['access_token'];
             $user->vk_token_expires_in = $token['expires_in'];
             $user->vk_user_id = $token['user_id'];
