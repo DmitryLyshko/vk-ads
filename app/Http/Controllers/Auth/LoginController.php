@@ -65,7 +65,7 @@ class LoginController extends Controller
             $user = new User();
             $user->login = $token['user_id'];
             $user->password = Hash::make($token['access_token'] . time());
-            $user->email = isset($token['email']) ? $token['email'] : '';
+            $user->email = '';
             $user->vk_access_token = $token['access_token'];
             $user->vk_token_expires_in = $token['expires_in'];
             $user->vk_user_id = $token['user_id'];
