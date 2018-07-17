@@ -71,7 +71,7 @@ class CampaignsController extends Controller
 
         return view('ads', [
             'ads' => $ads->response,
-            'note_collection' => $ads_note,
+            'ads_note' => $ads_note,
             'breadcrumbs' => [
                 'account' => [
                     'uri' => '/accounts',
