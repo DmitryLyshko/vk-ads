@@ -61,9 +61,16 @@ class CampaignsController extends Controller
 
         $vk_api = new VkApi();
         $ads = $vk_api->getAds($account_id, [$campaign_id]);
+        $ads_ids = [];
+        foreach ($ads->response as $ad) {
+            $ads_ids = $ad->id;
+        }
+
+        $ads_note = Ads::whereIn('ads_id', $ads_ids)->get();
 
         return view('ads', [
             'ads' => $ads->response,
+            'note_collection' => $ads_note,
             'breadcrumbs' => [
                 'account' => [
                     'uri' => '/accounts',
